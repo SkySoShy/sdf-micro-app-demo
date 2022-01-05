@@ -127,10 +127,6 @@ public class AssetService {
             assert executorService != null;
             executorService.execute(() -> {
                 try {
-                    //当前线程设置ak、sk信息
-                    //configuration.getApiDataSource().setAk(rawAk);
-                    //configuration.getApiDataSource().setSk(rawSk);
-
                     List<Asset> subList = getChildAssetsBy(id);
                     if (!CollectionUtils.isEmpty(subList)) {
                         List<Asset> tempList =
@@ -140,7 +136,6 @@ public class AssetService {
                 } catch (Exception e) {
                     log.warn("getSubAssetByFatherId#getChildAssetListBy,assetCount  exception: " + e.getMessage(), e);
                 } finally {
-                    //configuration.getApiDataSource().clear();
                     c1.countDown();
                 }
             });
